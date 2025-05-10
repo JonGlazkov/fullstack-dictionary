@@ -9,7 +9,7 @@ class AuthUseCase {
     this.userRepository = new UserRepositoryPrisma();
   }
 
-  async login({ email, password }: UserLogin): Promise<string> {
+  async execute({ email, password }: UserLogin): Promise<string> {
     const user = await this.userRepository.login({ email, password });
 
     if (!user) {

@@ -9,7 +9,7 @@ export default async function authRoutes(fastify: FastifyInstance) {
   fastify.post<{ Body: UserLogin }>("/login", async (req, reply) => {
     const { email, password } = req.body;
 
-    const token = await authUseCase.login({ email, password });
+    const token = await authUseCase.execute({ email, password });
     return reply.send({ token });
   });
 

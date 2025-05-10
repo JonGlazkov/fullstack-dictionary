@@ -18,8 +18,13 @@ export interface UserLogin {
   password: string;
 }
 
+export interface UserUpdate {
+  name?: string;
+}
+
 export interface UserRepository {
   create(user: UserCreate): Promise<User>;
   login(user: UserLogin): Promise<User | null>;
+  update(id: string, user: UserUpdate): Promise<User | null>;
   // findByEmail(email: string): Promise<User | null>;
 }

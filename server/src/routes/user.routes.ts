@@ -1,4 +1,4 @@
-import { UserCreate } from "@src/interfaces/user.interface";
+import { UserCreate, UserUpdate } from "@src/interfaces/user.interface";
 import { UserUseCase } from "@src/usecases/user.usecases";
 import { FastifyInstance } from "fastify";
 
@@ -19,7 +19,19 @@ export async function userRoutes(fastify: FastifyInstance) {
     }
   });
 
-  fastify.get("/", (req, reply) => {
-    reply.send("Hello from user route");
-  });
+  fastify.patch<{ Params: { id: string }; Body: UserUpdate }>(
+    "/:id",
+    async (req, reply) => {
+      const { id } = req.params;
+      const { name } = req.body;
+
+      try {
+        const data = await userUseCase.update(id, { name });
+
+        return reply.status(200).send(data);
+      } catch (error) {
+        reply.send(error);
+      }
+    }
+  );
 }

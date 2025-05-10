@@ -3,6 +3,7 @@ import {
   UserCreate,
   UserLogin,
   UserRepository,
+  UserUpdate,
 } from "@src/interfaces/user.interface";
 import { prisma } from "@src/utils/database/prisma-client";
 
@@ -10,7 +11,7 @@ class UserRepositoryPrisma implements UserRepository {
   async create(user: UserCreate): Promise<User> {
     const result = await prisma.user.create({
       data: {
-        name: user.email,
+        name: user.name,
         email: user.email,
         password: user.password,
       },
@@ -24,6 +25,19 @@ class UserRepositoryPrisma implements UserRepository {
       where: {
         email,
         password,
+      },
+    });
+
+    return result;
+  }
+
+  async update(id: string, user: UserUpdate): Promise<User | null> {
+    const result = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        name: user.name,
       },
     });
 

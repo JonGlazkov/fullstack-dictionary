@@ -5,6 +5,7 @@ export enum ErrorTypes {
   NotFound = "NotFound",
   Unauthorized = "Unauthorized",
   Internal = "Internal",
+  BadRequest = "BadRequest",
 }
 
 export interface Error {

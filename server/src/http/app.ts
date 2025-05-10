@@ -1,6 +1,7 @@
+import jwt from "@fastify/jwt";
 import handleErrors from "@src/middlewares/handleErrors";
+import routes from "@src/routes";
 import fastify, { FastifyInstance } from "fastify";
-
 
 class App {
   private readonly app: FastifyInstance;
@@ -9,7 +10,7 @@ class App {
     this.app = fastify({
       ignoreDuplicateSlashes: true,
       // logger: true,
-    })
+    });
 
     this.initRoutes();
     this.initHandleErrors();
@@ -19,19 +20,23 @@ class App {
     const port = parseInt(process.env.PORT || "3333", 10);
     this.app.listen({ port }).then(() => {
       console.log(`🚀 HTTP server running on port ${port}`);
+      console.log(this.app.printRoutes());
     });
   }
 
   private initRoutes() {
+    this.app.register(routes);
+    this.app.register(jwt, {
+      secret: process.env.JWT_SECRET,
+    });
     this.app.get("/ping", (_, res) => {
-      res.send('pong');
-    })
+      res.send("pong");
+    });
   }
 
   private initHandleErrors() {
-    this.app.setErrorHandler(handleErrors)
+    this.app.setErrorHandler(handleErrors);
   }
-
 }
 
 export default App;

@@ -1,10 +1,10 @@
-import { UserLogin } from "@src/interfaces/user.interface";
+import { UserLogin, UserRepository } from "@src/interfaces/user.interface";
 import { UserRepositoryPrisma } from "@src/repositories/user.repository";
 import { ErrorTypes, NotFound } from "@src/utils";
 import { FastifyInstance } from "fastify";
 
 class AuthUseCase {
-  userRepository: UserRepositoryPrisma;
+  userRepository: UserRepository;
   constructor(private readonly app: FastifyInstance) {
     this.userRepository = new UserRepositoryPrisma();
   }

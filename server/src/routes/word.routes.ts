@@ -3,21 +3,20 @@ import GeneralError from "@src/utils/error/GeneralError";
 import { FastifyInstance } from "fastify";
 
 export async function wordsRoutes(fastify: FastifyInstance) {
-  fastify.get<{ Params: { word: string } }>("/:word", async (req, reply) => {
-    const { word } = req.params;
+  fastify.get<{ Querystring: { word: string } }>("/", async (req, reply) => {
+    const { word } = req.query;
 
     try {
-      const response = await fastify.inject({
-        method: "GET",
-        url: `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
-      });
+      const response = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+      );
 
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        const data = JSON.parse(response.body);
+      if (response.ok) {
+        const data = await response.json();
         return reply.status(200).send(data);
       }
 
-      if (response.statusCode === 404) {
+      if (response.status === 404) {
         throw new NotFound({
           type: ErrorTypes.NotFound,
           title: "Word not found",
@@ -25,16 +24,9 @@ export async function wordsRoutes(fastify: FastifyInstance) {
         });
       }
 
-      return reply.status(response.statusCode).send(response.body);
+      return reply.status(response.status).send(response.body);
     } catch (error) {
-      throw new GeneralError(
-        {
-          type: ErrorTypes.Internal,
-          title: "Internal Server Error",
-          detail: error,
-        },
-        error.statusCode || 500
-      );
+      throw new GeneralError(error, error.statusCode || 500);
     }
   });
 }

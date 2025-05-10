@@ -1,0 +1,26 @@
+export enum ErrorTypes {
+  Create = "CreateException",
+  Update = "UpdateException",
+  Delete = "DeleteException",
+  NotFound = "NotFound",
+  Unauthorized = "Unauthorized",
+  Internal = "Internal",
+}
+
+export interface Error {
+  type: ErrorTypes;
+  title: string;
+  detail: string;
+}
+
+class GeneralError {
+  public readonly error: Error[];
+  public readonly statusCode: number;
+
+  constructor(error: Error | Error[], statusCode: number) {
+    this.error = Array.isArray(error) ? error : [error];
+    this.statusCode = statusCode;
+  }
+}
+
+export default GeneralError;

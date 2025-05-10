@@ -1,10 +1,15 @@
-import { FastifyError, FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import {
+  FastifyError,
+  FastifyInstance,
+  FastifyReply,
+  FastifyRequest,
+} from "fastify";
 
 import GeneralError from "@utils/error/GeneralError";
 
 enum ErrorTypes {
-  App = "app",
-  Unknown = "unknown",
+  App = "App",
+  Unknown = "Unknown",
 }
 
 const handleErrors = function (

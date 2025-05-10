@@ -8,6 +8,7 @@ class App {
   constructor() {
     this.app = fastify({
       ignoreDuplicateSlashes: true,
+      // logger: true,
     })
 
     this.initRoutes();

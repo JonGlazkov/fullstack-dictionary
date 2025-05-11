@@ -3,8 +3,8 @@ import GeneralError from "@src/utils/error/GeneralError";
 import { FastifyInstance } from "fastify";
 
 export async function wordsRoutes(fastify: FastifyInstance) {
-  fastify.get<{ Querystring: { word: string } }>("/", async (req, reply) => {
-    const { word } = req.query;
+  fastify.get<{ Params: { word: string } }>("/:word", async (req, reply) => {
+    const { word } = req.params;
 
     try {
       const response = await fetch(

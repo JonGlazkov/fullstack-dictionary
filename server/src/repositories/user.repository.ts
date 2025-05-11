@@ -31,6 +31,16 @@ class UserRepositoryPrisma implements UserRepository {
     return result;
   }
 
+  async verifyEmail(email: string): Promise<User | null> {
+    const result = await prisma.user.findFirst({
+      where: {
+        email,
+      },
+    });
+
+    return result;
+  }
+
   async update(id: string, user: UserUpdate): Promise<User | null> {
     const result = await prisma.user.update({
       where: {

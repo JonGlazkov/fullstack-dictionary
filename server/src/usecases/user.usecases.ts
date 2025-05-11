@@ -1,6 +1,5 @@
 import {
   User,
-  UserCreate,
   UserRepository,
   UserUpdate,
 } from "@src/interfaces/user.interface";
@@ -12,31 +11,6 @@ class UserUseCase {
 
   constructor() {
     this.userRepository = new UserRepositoryPrisma();
-  }
-
-  async create({ name, email, password }: UserCreate): Promise<User> {
-    if (!name || !email || !password) {
-      const missingFields = [];
-      if (!name) missingFields.push("Name");
-      if (!email) missingFields.push("Email");
-      if (!password) missingFields.push("Password");
-
-      throw new BadRequest({
-        type: ErrorTypes.BadRequest,
-        title: "Missing required fields",
-        detail: `The following fields are required: ${missingFields.join(
-          ", "
-        )}.`,
-      });
-    }
-
-    const result = await this.userRepository.create({
-      name,
-      email,
-      password,
-    });
-
-    return result;
   }
 
   async update(id: string, user: UserUpdate): Promise<User | null> {

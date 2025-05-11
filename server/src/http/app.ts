@@ -29,6 +29,9 @@ class App {
     this.app.register(jwt, {
       secret: process.env.JWT_SECRET,
     });
+    this.app.get("/", (_, res) => {
+      res.send({ message: "Fullstack Challenge 🏅 - Dictionary" });
+    });
     this.app.get("/ping", (_, res) => {
       res.send("pong");
     });

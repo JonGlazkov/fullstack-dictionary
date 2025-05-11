@@ -13,7 +13,7 @@ export class WordRepositoryPrisma implements WordRepository {
     const result = await prisma.word.findMany({
       where: {
         word: {
-          contains: word,
+          startsWith: word,
         },
       },
       take: limit,

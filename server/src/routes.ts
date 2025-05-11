@@ -8,7 +8,7 @@ const registerRoutes = (app: FastifyInstance) => {
   app.register(userRoutes, { prefix: "/users" });
   app.register(authRoutes, { prefix: "/auth" });
   app.register(searchHistoryRoutes, { prefix: "/search" });
-  app.register(wordsRoutes, { prefix: "/words" });
+  app.register(wordsRoutes, { prefix: "/entries/en" });
 };
 
 export default registerRoutes;

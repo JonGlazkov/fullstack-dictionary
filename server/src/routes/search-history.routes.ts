@@ -6,26 +6,27 @@ import { FastifyInstance } from "fastify";
 export async function searchHistoryRoutes(fastify: FastifyInstance) {
   const searchHistoryUseCase = new SearchHistoryUseCases();
 
-  fastify.post<{ Body: SearchHistoryCreate }>(
-    "/",
-    { preValidation: [authMiddleware] },
-    async (req, reply) => {
-      const userId = (req.user as { id: string }).id;
-      const { word } = req.body;
+  fastify.addHook("preHandler", authMiddleware);
+  fastify.post<{ Body: SearchHistoryCreate }>("/", async (req, reply) => {
+    const userId = (req.user as { id: string }).id;
+    const { word } = req.body;
 
-      const searchHistory = await searchHistoryUseCase.saveSearch(userId, {
-        word,
-      });
-      return reply.status(201).send(searchHistory);
-    }
-  );
+    const searchHistory = await searchHistoryUseCase.saveSearch(userId, {
+      word,
+    });
+    return reply.status(201).send(searchHistory);
+  });
 
-  fastify.get("/", { preValidation: [authMiddleware] }, async (req, reply) => {
-    const { userId } = req.user as { userId: string };
+  fastify.get("/", async (req, reply) => {
     const { limit = 10, page = 1 } = req.query as {
       limit?: number;
       page?: number;
     };
+    const authToken = req.headers.authorization;
+    const token = authToken?.split(" ")[1];
+
+    const user = fastify.jwt.decode(token);
+    const userId = (user as { id: string }).id;
 
     const searchHistory = await searchHistoryUseCase.getAllHistory(userId, {
       limit,

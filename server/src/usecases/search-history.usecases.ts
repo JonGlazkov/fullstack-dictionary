@@ -30,6 +30,19 @@ class SearchHistoryUseCases {
       });
     }
 
+    const existsWord = await this.searchHistoryRepository.existsWord(
+      userId,
+      data.word
+    );
+
+    if (existsWord) {
+      throw new BadRequest({
+        type: ErrorTypes.BadRequest,
+        title: "Word already exists",
+        detail: `The word "${data.word}" already exists in the search history.`,
+      });
+    }
+
     return await this.searchHistoryRepository.create(userId, data);
   }
 

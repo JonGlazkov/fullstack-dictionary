@@ -19,6 +19,17 @@ class SearchHistoryRepositoryPrisma implements SearchHistoryRepository {
     });
   }
 
+  async existsWord(userId: string, word: string): Promise<boolean> {
+    const result = await prisma.searchHistory.findFirst({
+      where: {
+        userId,
+        word,
+      },
+    });
+
+    return !!result;
+  }
+
   async findByUserId(
     userId: string,
     { limit, page }: SearchHistoryListByUserId

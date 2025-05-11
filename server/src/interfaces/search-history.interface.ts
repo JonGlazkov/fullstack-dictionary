@@ -19,5 +19,6 @@ export interface SearchHistoryRepository {
     userdId: string,
     query: SearchHistoryListByUserId
   ): Promise<SearchHistory[]>;
+  existsWord(userId: string, word: string): Promise<boolean>;
   countByUserId(userId: string): Promise<number>;
 }

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "tsx watch src/http/index.ts",
+    "populate": "tsx src/utils/database/populateWords.ts",
     "test": "test"
   },
   "author": "Jon Ventura",

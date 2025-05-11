@@ -4,7 +4,7 @@ import {
   SearchHistoryListByUserId,
   SearchHistoryRepository,
 } from "@src/interfaces/search-history.interface";
-import { prisma } from "@src/utils/database/prisma-client";
+import { prisma } from "@src/utils/database/prismaClient";
 
 class SearchHistoryRepositoryPrisma implements SearchHistoryRepository {
   async create(

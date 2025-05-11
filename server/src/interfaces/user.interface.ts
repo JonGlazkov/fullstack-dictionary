@@ -20,6 +20,14 @@ export interface UserResponse {
   token: string;
 }
 
+export interface UserDecodedByJwt {
+  id: string;
+  name: string;
+  email: string;
+  iat: number;
+  exp: number;
+}
+
 export interface UserLogin {
   email: string;
   password: string;
@@ -34,5 +42,6 @@ export interface UserRepository {
   login(user: UserLogin): Promise<User | null>;
   verifyEmail(email: string): Promise<User | null>;
   update(id: string, user: UserUpdate): Promise<User | null>;
+  me(id: string): Promise<User | null>;
   // findByEmail(email: string): Promise<User | null>;
 }

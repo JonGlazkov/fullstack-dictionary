@@ -34,6 +34,20 @@ class UserUseCase {
 
     return result;
   }
+
+  async me(id: string): Promise<User | null> {
+    if (!id) {
+      throw new BadRequest({
+        type: ErrorTypes.BadRequest,
+        title: "Missing required fields",
+        detail: "ID is required.",
+      });
+    }
+
+    const result = await this.userRepository.me(id);
+
+    return result;
+  }
 }
 
 export { UserUseCase };

@@ -1,4 +1,5 @@
 import { SearchHistoryCreate } from "@src/interfaces/search-history.interface";
+import { UserDecodedByJwt } from "@src/interfaces/user.interface";
 import { authMiddleware } from "@src/middlewares/authMiddleware";
 import { SearchHistoryUseCases } from "@src/usecases/search-history.usecases";
 import { FastifyInstance } from "fastify";
@@ -25,8 +26,8 @@ export async function searchHistoryRoutes(fastify: FastifyInstance) {
     const authToken = req.headers.authorization;
     const token = authToken?.split(" ")[1];
 
-    const user = fastify.jwt.decode(token);
-    const userId = (user as { id: string }).id;
+    const user = fastify.jwt.decode<UserDecodedByJwt>(token);
+    const userId = user.id;
 
     const searchHistory = await searchHistoryUseCase.getAllHistory(userId, {
       limit,

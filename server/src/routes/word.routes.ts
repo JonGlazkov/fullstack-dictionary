@@ -1,3 +1,4 @@
+import { UserDecodedByJwt } from "@src/interfaces/user.interface";
 import { authMiddleware } from "@src/middlewares/authMiddleware";
 import { FavoriteUseCase } from "@src/usecases/favorite.usecases";
 import { SearchHistoryUseCases } from "@src/usecases/search-history.usecases";
@@ -63,10 +64,10 @@ export async function wordsRoutes(fastify: FastifyInstance) {
         const data = (await response.json()) as any[];
 
         const token = authHeader.split(" ")[1];
-        const user = fastify.jwt.decode(token);
+        const user = fastify.jwt.decode<UserDecodedByJwt>(token);
 
         if (user) {
-          const userId = (user as { id: string }).id;
+          const userId = user.id;
           await searchHistoryUseCase.saveSearch(userId, { word });
         }
 
@@ -95,8 +96,8 @@ export async function wordsRoutes(fastify: FastifyInstance) {
 
       try {
         const token = authHeader.split(" ")[1];
-        const user = fastify.jwt.decode(token);
-        const userId = (user as { id: string }).id;
+        const user = fastify.jwt.decode<UserDecodedByJwt>(token);
+        const userId = user.id;
 
         await favoriteUseCase.save(userId, word);
 
@@ -117,8 +118,8 @@ export async function wordsRoutes(fastify: FastifyInstance) {
 
       try {
         const token = authHeader.split(" ")[1];
-        const user = fastify.jwt.decode(token);
-        const userId = (user as { id: string }).id;
+        const user = fastify.jwt.decode<UserDecodedByJwt>(token);
+        const userId = user.id;
 
         await favoriteUseCase.unfavorite(userId, word);
 

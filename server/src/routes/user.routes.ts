@@ -1,10 +1,12 @@
 import { UserUpdate } from "@src/interfaces/user.interface";
+import { authMiddleware } from "@src/middlewares/authMiddleware";
 import { UserUseCase } from "@src/usecases/user.usecases";
 import { FastifyInstance } from "fastify";
 
 export async function userRoutes(fastify: FastifyInstance) {
   const userUseCase = new UserUseCase();
 
+  fastify.addHook("preHandler", authMiddleware);
   fastify.patch<{ Params: { id: string }; Body: UserUpdate }>(
     "/:id",
     async (req, reply) => {

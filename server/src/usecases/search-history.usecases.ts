@@ -18,7 +18,7 @@ class SearchHistoryUseCases {
       throw new BadRequest({
         type: ErrorTypes.BadRequest,
         title: "Missing ID from Token",
-        detail: "User ID is required to save search history.",
+        detail: "Verify if you are logged in.",
       });
     }
 
@@ -39,7 +39,7 @@ class SearchHistoryUseCases {
       throw new BadRequest({
         type: ErrorTypes.BadRequest,
         title: "Word already exists",
-        detail: `The word "${data.word}" already exists in the search history.`,
+        detail: `The word ${data.word} already exists in the search history.`,
       });
     }
 

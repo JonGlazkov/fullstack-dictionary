@@ -35,6 +35,7 @@ export default function SignIn() {
     mutationFn: async (data: SignInFormSchema) => {
       signIn("credentials", {
         email: data.email,
+        password: data.password,
         redirect: false,
       }).then((response) => {
         if (response?.error) {

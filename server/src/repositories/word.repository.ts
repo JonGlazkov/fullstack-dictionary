@@ -10,18 +10,18 @@ export class WordRepositoryPrisma implements WordRepository {
     const { word, page = 1, limit = 10 } = query;
     const offset = (page - 1) * limit;
 
-    const result = await prisma.word.findMany({
-      where: {
-        word: {
-          startsWith: word,
-        },
-      },
-      take: limit,
-      skip: offset,
-      orderBy: {
-        word: "asc",
-      },
-    });
+    const result = await prisma.$queryRaw<Word[]>`
+      SELECT *
+      FROM words
+      WHERE word LIKE ${`${word}%`}
+      ORDER BY 
+        CASE 
+          WHEN word LIKE ${`${word} %`} THEN 1 
+          ELSE 0 
+        END
+      LIMIT ${limit} 
+      OFFSET ${offset}
+    `;
 
     if (!result) {
       throw new GeneralError(

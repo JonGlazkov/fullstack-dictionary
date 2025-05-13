@@ -1,3 +1,4 @@
+import cors from "@fastify/cors";
 import jwt from "@fastify/jwt";
 import handleErrors from "@src/middlewares/handleErrors";
 import routes from "@src/routes";
@@ -22,6 +23,11 @@ class App {
       console.log(`🚀 HTTP server running on port ${port}`);
       console.log(this.app.printRoutes());
     });
+    this.app.register(cors, {
+      origin: ["http://localhost:3000"],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    })
   }
 
   private initRoutes() {

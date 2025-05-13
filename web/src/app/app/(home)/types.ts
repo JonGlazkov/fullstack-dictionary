@@ -4,12 +4,6 @@ export type Word = {
   createdAt: string;
 };
 
-export type Favorite = {
-  id: string;
-  userId: string;
-  word: string;
-};
-
 export type License = {
   name: string;
   url: string;

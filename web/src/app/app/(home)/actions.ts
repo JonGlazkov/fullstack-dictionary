@@ -1,6 +1,6 @@
 import { api } from "@/lib/axios";
-import { ApiFavoriteResponse, ApiResultResponse } from "@/types";
-import { DictionaryResponse, Favorite, Word } from "./types";
+import { ApiResultResponse } from "@/types";
+import { DictionaryResponse, Word } from "./types";
 
 interface GetWordsParams {
   id?: string;
@@ -29,13 +29,6 @@ export async function markAsFavorite(word: string) {
 export async function unMarkAsFavorite(word: string) {
   const { data } = await api.delete(`/entries/en/${word}/unfavorite`);
 
-  return data;
-}
-
-export async function getFavorites() {
-  const { data } = await api.get<ApiFavoriteResponse<Favorite[]>>(
-    "/users/me/favorites"
-  );
   return data;
 }
 

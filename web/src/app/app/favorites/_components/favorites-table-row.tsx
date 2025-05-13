@@ -3,21 +3,19 @@ import { Search, Star, StarOff } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { TableCell, TableRow } from "@/components/ui/table";
 
 import { useFavorite } from "@/hooks/use-favorite";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import { useSession } from "next-auth/react";
-import { Favorite } from "../../favorites/types";
-import { Word } from "../types";
-import WordDetails from "./words-details";
+import WordDetails from "../../(home)/_components/words-details";
+import { Favorite } from "../types";
 
-export interface WordTableRowProps {
-  data: Word;
-  favorite?: Favorite;
+export interface FavoriteTableRowProps {
+  data: Favorite;
 }
 
-export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
+export default function FavoriteTableRow({ data }: FavoriteTableRowProps) {
   const { data: session } = useSession();
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const {
@@ -43,6 +41,7 @@ export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
         </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">{data.id}</TableCell>
+      <TableCell className="font-mono text-xs font-medium"></TableCell>
 
       <TableCell className="font-medium">{data.word}</TableCell>
       <TableCell className="text-muted-foreground">
@@ -50,6 +49,8 @@ export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
           year: "numeric",
           month: "2-digit",
           day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
         })}
       </TableCell>
 

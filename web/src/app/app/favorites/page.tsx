@@ -3,7 +3,8 @@ import {
   DashboardPageHeader,
   DashboardPageHeaderTitle,
   DashboardPageMain,
-} from '@/components/dashboard/page'
+} from "@/components/dashboard/page";
+import FavoritesTable from "./_components/favorites-page";
 
 export default function Favorites() {
   return (
@@ -12,8 +13,8 @@ export default function Favorites() {
         <DashboardPageHeaderTitle>Favoritas</DashboardPageHeaderTitle>
       </DashboardPageHeader>
       <DashboardPageMain>
-        <h1>Favoritas</h1>
+        <FavoritesTable />
       </DashboardPageMain>
     </DashboardPage>
-  )
+  );
 }

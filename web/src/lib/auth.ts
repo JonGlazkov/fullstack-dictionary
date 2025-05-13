@@ -19,6 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             password: credentials?.password,
           }),
         });
+        console.log(credentials)
         const user = await response.json();
 
         if (user && response.ok) {

@@ -38,8 +38,6 @@ export default function HistoryTable() {
     router.push("?" + params.toString());
   }
 
-  console.log("historyData", historyData);
-
   return (
     <>
       <div className="flex flex-col gap-4">

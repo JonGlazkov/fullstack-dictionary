@@ -8,13 +8,13 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const historyFilterSchema = z.object({
+const favoriteFilterSchema = z.object({
   search: z.string().nullable(),
 });
 
-type HistoryFilterSchema = z.infer<typeof historyFilterSchema>;
+type FavoriteFilterSchema = z.infer<typeof favoriteFilterSchema>;
 
-export default function HistoryTableFilter() {
+export default function FavoriteTableFilter() {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -24,14 +24,14 @@ export default function HistoryTableFilter() {
   const search = searchParams.get("search");
 
   const { register, handleSubmit, control, reset } =
-    useForm<HistoryFilterSchema>({
-      resolver: zodResolver(historyFilterSchema),
+    useForm<FavoriteFilterSchema>({
+      resolver: zodResolver(favoriteFilterSchema),
       defaultValues: {
         search,
       },
     });
 
-  function handleFilter({ search }: HistoryFilterSchema) {
+  function handleFilter({ search }: FavoriteFilterSchema) {
     if (search) {
       params.set("search", search);
     } else {

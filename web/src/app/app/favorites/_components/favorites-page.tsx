@@ -14,6 +14,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { getFavorites } from "../action";
 import { Favorite } from "../types";
+import FavoriteTableFilter from "./favorites-table-filter";
 import FavoriteTableRow from "./favorites-table-row";
 
 export default function FavoritesTable() {
@@ -22,11 +23,13 @@ export default function FavoritesTable() {
   const params = new URLSearchParams(searchParams.toString());
 
   const pageIndex = z.coerce.number().parse(searchParams.get("page")) || 1;
+  const search = searchParams.get("search");
 
   const { data: favoriteData } = useQuery({
-    queryKey: ["favorite", pageIndex],
+    queryKey: ["favorite", search, pageIndex],
     queryFn: () =>
       getFavorites({
+        search: search ?? "",
         page: pageIndex,
         limit: 20,
       }),
@@ -38,13 +41,11 @@ export default function FavoritesTable() {
     router.push("?" + params.toString());
   }
 
-  console.log("favoriteData", favoriteData);
-
   return (
     <>
       <div className="flex flex-col gap-4">
         <div className="space-y-5">
-          {/* <FavoriteTableFilter /> */}
+          <FavoriteTableFilter />
 
           <div className="rounded-md border">
             <Table>

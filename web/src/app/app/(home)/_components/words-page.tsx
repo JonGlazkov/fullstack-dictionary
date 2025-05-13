@@ -25,22 +25,23 @@ export default function WordsTable() {
   const params = new URLSearchParams(searchParams.toString());
 
   const pageIndex = z.coerce.number().parse(searchParams.get("page")) || 1;
-
+  const id = searchParams.get("id");
   const search = searchParams.get("search");
 
   const { data: words } = useQuery({
-    queryKey: ["words", pageIndex, search],
+    queryKey: ["words", id, pageIndex, search],
     queryFn: () =>
-      getWords(session?.accessToken!, {
+      getWords({
+        id: id ?? "",
         page: pageIndex,
         search: search ?? "",
         limit: 20,
       }),
   });
 
-  const { data: favoriteWords } = useQuery({
+  useQuery({
     queryKey: ["favorites"],
-    queryFn: () => getFavorites(session?.accessToken!),
+    queryFn: getFavorites,
   });
 
   function handlePagination(pageIndex: number) {

@@ -47,7 +47,7 @@ export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
   }
 
   const { mutateAsync: markAsFavoriteFn, isPending: isMarking } = useMutation({
-    mutationFn: () => markAsFavorite(session?.accessToken!, data.word),
+    mutationFn: () => markAsFavorite(data.word),
     onSuccess: () => {
       toast.success("Palavra marcada como favorita");
       updateFavoriteStatusOnCache(data.id, data.word);
@@ -56,7 +56,7 @@ export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
 
   const { mutateAsync: unMarkAsFavoriteFn, isPending: isUnMarking } =
     useMutation({
-      mutationFn: () => unMarkAsFavorite(session?.accessToken!, data.word),
+      mutationFn: () => unMarkAsFavorite(data.word),
       onSuccess: () => {
         toast.success("Palavra desmarcada como favorita");
         updateFavoriteStatusOnCache(data.id, data.word);
@@ -82,7 +82,7 @@ export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
             </Button>
           </DialogTrigger>
 
-          <WordDetails />
+          <WordDetails open={isDetailOpen} word={data.word} />
         </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">{data.id}</TableCell>

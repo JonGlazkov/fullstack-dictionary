@@ -68,7 +68,7 @@ export function SignUpForm() {
       toast('Congratulations', {
         description: "You have successfully signed up.",
       });
-      router.replace("/home");
+      router.replace("/app");
     }
   }
 

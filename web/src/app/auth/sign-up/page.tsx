@@ -5,9 +5,11 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { api } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 const signUpFormSchema = z
@@ -29,38 +31,45 @@ const signUpFormSchema = z
     }
   });
 
-type SignUpForm = z.infer<typeof signUpFormSchema>;
+type SignUpFormSchema = z.infer<typeof signUpFormSchema>;
+// const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<SignUpForm>({
+  } = useForm<SignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema),
   });
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams.toString());
+  
   const router = useRouter();
 
-  const handleSignUp = async (data: SignUpForm) => {
-    console.log(data);
-
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-      .then(() => {
-        toast("Usuário criado com sucesso", {
-          action: {
-            label: "Acessar painel",
-            onClick: () => router.push("/auth/sign-in"),
-          },
-        });
-      })
-      .catch(() => {
-        toast("Erro ao criar usuário", {
-          action: {
-            label: "Tentar novamente",
-            onClick: () => handleSignUp(data),
-          },
-        });
+  const { mutateAsync: createAccount } = useMutation({
+    mutationFn: async (data: SignUpFormSchema) => {
+      await api.post("/auth/signup", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
       });
+      
+    },
+    onSuccess: (_, data) => {
+      params.set("email", data.email);
+      toast.success("Conta criada com sucesso");
+      router.push("/auth/sign-in" + "?" + params.toString());
+    },
+    onError: (e) => {
+      console.log(e);
+      toast.error("Erro ao criar conta");
+    },
+  });
+
+
+  const handleSignUp = async (data: SignUpFormSchema) => {
+    await createAccount(data);
   };
 
   return (

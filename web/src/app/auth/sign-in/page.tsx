@@ -2,7 +2,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { redirect, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+
 
 const signInFormSchema = z.object({
   email: z.string().email(),
@@ -20,6 +21,7 @@ type SignInFormSchema = z.infer<typeof signInFormSchema>;
 
 export default function SignIn() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const {
     register,
@@ -42,28 +44,21 @@ export default function SignIn() {
           throw new Error(response.error);
         }
         if (response?.ok) {
-          toast("E-mail enviado com sucesso", {
-            description: "Cheque seu e-mail para acessar o painel",
-            action: {
-              label: "Acessar painel",
-              onClick: () => redirect("/dashboard"),
-            },
-          });
+          toast("Login efetuado com sucesso");
+          router.replace("/app");
         }
       });
     },
   });
 
-  const handleSignUp = async ({ email, password }: SignInFormSchema) => {
+  const handleSignIn = async ({ email, password }: SignInFormSchema) => {
     try {
       await authenticate({ email, password });
-
-      toast("Logado com sucesso");
     } catch (e) {
       toast("Erro ao autenticar", {
         action: {
           label: "Tentar novamente",
-          onClick: () => handleSignUp({ email, password }),
+          onClick: () => handleSignIn({ email, password }),
         },
       });
     }
@@ -86,7 +81,7 @@ export default function SignIn() {
             </p>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit(handleSignUp)}>
+          <form className="space-y-4" onSubmit={handleSubmit(handleSignIn)}>
             <div className="space-y-2">
               <Label htmlFor="email">E-mail</Label>
               <Input id="email" type="email" {...register("email")} />

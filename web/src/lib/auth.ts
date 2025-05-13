@@ -1,6 +1,18 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+// Extend the User type to include 'token'
+declare module "next-auth" {
+  interface User {
+    token?: string;
+  }
+}
+
+declare module "next-auth" {
+  interface Session {
+    accessToken?: string;
+  }
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -19,10 +31,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             password: credentials?.password,
           }),
         });
-        console.log(credentials)
+        console.log(credentials);
         const user = await response.json();
 
-        if (user && response.ok) {
+        if (user?.token && response.ok) {
           return user;
         }
 
@@ -32,15 +44,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
-      user && (token.user = user);
+      if (user?.token) {
+        token.accessToken = user.token;
+      }
       return token;
     },
-    async session({ session, token }) {
-      if (token?.user) {
-        //@ts-expect-error Expires not found in type User
-        session = token.user;
+    async session({ session, token, user }) {
+      if (token?.accessToken) {
+        (session as any).accessToken = token.accessToken;
       }
-
       return session;
     },
   },

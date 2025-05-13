@@ -7,23 +7,42 @@ import GeneralError, { ErrorTypes } from "@src/utils/error/GeneralError";
 
 export class WordRepositoryPrisma implements WordRepository {
   async getAll(query: WordQuery): Promise<Word[]> {
-    const { word, page = 1, limit = 10 } = query;
+    const { id, word, page = 1, limit = 10 } = query;
     const offset = (page - 1) * limit;
 
-    const result = await prisma.$queryRaw<Word[]>`
+    let result: Word[];
+
+    if (id) {
+      result = await prisma.$queryRaw<Word[]>`
+      SELECT *
+      FROM words
+      WHERE id = ${id}
+      LIMIT 1
+      `;
+    } else if (!word) {
+      result = await prisma.$queryRaw<Word[]>`
+      SELECT *
+      FROM words
+      ORDER BY word ASC
+      LIMIT ${limit}
+      OFFSET ${offset}
+      `;
+    } else {
+      result = await prisma.$queryRaw<Word[]>`
       SELECT *
       FROM words
       WHERE word LIKE ${`${word}%`}
       ORDER BY 
         CASE 
-          WHEN word LIKE ${`${word} %`} THEN 1 
-          ELSE 0 
+        WHEN word LIKE ${`${word} %`} THEN 1 
+        ELSE 0 
         END
       LIMIT ${limit} 
       OFFSET ${offset}
-    `;
+      `;
+    }
 
-    if (!result) {
+    if (!result || result.length === 0) {
       throw new GeneralError(
         {
           type: ErrorTypes.Internal,

@@ -5,6 +5,7 @@ export interface Word {
 }
 
 export interface WordQuery {
+  id?: string;
   word?: string;
   page: number;
   limit: number;

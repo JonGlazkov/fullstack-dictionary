@@ -8,9 +8,10 @@ export class WordUseCase {
     this.wordRepository = new WordRepositoryPrisma();
   }
 
-  async getAll({ word, limit, page }: WordQuery) {
+  async getAll({ id, word, limit, page }: WordQuery) {
     const [words, count] = await Promise.all([
       this.wordRepository.getAll({
+        id,
         word,
         limit,
         page,

@@ -14,11 +14,17 @@ export async function wordsRoutes(fastify: FastifyInstance) {
 
   fastify.addHook("preHandler", authMiddleware);
   fastify.get<{
-    Querystring: { search?: string; limit?: number; page?: number };
+    Querystring: {
+      id?: string;
+      search?: string;
+      limit?: number;
+      page?: number;
+    };
   }>("/", async (req, reply) => {
-    const { search, limit = 10, page = 1 } = req.query;
+    const { id, search, limit = 10, page = 1 } = req.query;
 
     const words = await wordUseCase.getAll({
+      id,
       word: search,
       page: Number(page),
       limit: Number(limit),

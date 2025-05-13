@@ -1,7 +1,7 @@
 export type Word = {
   id: string;
   word: string;
-  createdAt: Date;
+  createdAt: string;
 };
 
 export type Favorite = {

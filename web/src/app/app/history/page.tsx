@@ -3,7 +3,8 @@ import {
   DashboardPageHeader,
   DashboardPageHeaderTitle,
   DashboardPageMain,
-} from '@/components/dashboard/page'
+} from "@/components/dashboard/page";
+import HistoryTable from "./_components/history-page";
 
 export default function History() {
   return (
@@ -12,8 +13,8 @@ export default function History() {
         <DashboardPageHeaderTitle>Histórico</DashboardPageHeaderTitle>
       </DashboardPageHeader>
       <DashboardPageMain>
-        <h1>Histórico</h1>
+        <HistoryTable />
       </DashboardPageMain>
     </DashboardPage>
-  )
+  );
 }

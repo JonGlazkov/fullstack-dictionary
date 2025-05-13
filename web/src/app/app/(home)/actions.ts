@@ -1,5 +1,5 @@
-import { ApiFavoriteResponse, ApiResultResponse } from "@/components/types";
 import { api } from "@/lib/axios";
+import { ApiFavoriteResponse, ApiResultResponse } from "@/types";
 import { DictionaryResponse, Favorite, Word } from "./types";
 
 interface GetWordsParams {

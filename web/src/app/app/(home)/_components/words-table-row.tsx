@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-import { ApiFavoriteResponse } from "@/components/types";
 import { queryClient } from "@/lib/react-query";
+import { ApiFavoriteResponse } from "@/types";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { markAsFavorite, unMarkAsFavorite } from "../actions";
@@ -78,7 +78,7 @@ export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
           <DialogTrigger asChild>
             <Button variant="outline" size="sm">
               <Search className="h-3 w-3" />
-              <span className="sr-only">Detalhes da consulta</span>
+              <span className="sr-only">Detalhes da palavra</span>
             </Button>
           </DialogTrigger>
 
@@ -88,7 +88,13 @@ export default function WordsTableRow({ data, favorite }: WordTableRowProps) {
       <TableCell className="font-mono text-xs font-medium">{data.id}</TableCell>
 
       <TableCell className="font-medium">{data.word}</TableCell>
-      <TableCell className="text-muted-foreground">12/08/2025</TableCell>
+      <TableCell className="text-muted-foreground">
+        {new Date(data.createdAt).toLocaleDateString("pt-BR", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })}
+      </TableCell>
 
       <TableCell>
         {!isWordFavorite ? (

@@ -5,14 +5,14 @@ import {
   DashboardPageMain,
 } from '@/components/dashboard/page'
 
-export default async function Page() {
+export default function History() {
   return (
     <DashboardPage>
       <DashboardPageHeader>
-        <DashboardPageHeaderTitle>Dicionário</DashboardPageHeaderTitle>
+        <DashboardPageHeaderTitle>Histórico</DashboardPageHeaderTitle>
       </DashboardPageHeader>
       <DashboardPageMain>
-        <h1>Dicionário</h1>
+        <h1>Histórico</h1>
       </DashboardPageMain>
     </DashboardPage>
   )

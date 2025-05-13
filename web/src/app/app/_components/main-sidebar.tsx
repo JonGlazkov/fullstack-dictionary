@@ -11,7 +11,7 @@ import {
   DashboardSidebarNavMain,
 } from '@/components/dashboard/sidebar'
 import { Logo } from '@/components/logo'
-import { HomeIcon, TableConfigIcon } from 'lucide-react'
+import { BookMarked, BookOpen, HistoryIcon } from 'lucide-react'
 import { Session } from 'next-auth'
 import { usePathname } from 'next/navigation'
 import { UserDropdown } from './user-dropdown'
@@ -36,15 +36,22 @@ export function MainSidebar({ user }: MainSidebarProps) {
         <DashboardSidebarNav>
           <DashboardSidebarNavMain>
             <DashboardSidebarNavLink href="/app" active={isActive('/app')}>
-              <HomeIcon className="w-4 h-4 mr-4" />
-              Tarefas
+              <BookOpen className="w-4 h-4 mr-4" />
+              Palavras
             </DashboardSidebarNavLink>
             <DashboardSidebarNavLink
-              href="/app/settings"
-              active={isActive('/app/settings')}
+              href="/app/favorites"
+              active={isActive('/app/favorites')}
             >
-              <TableConfigIcon className="w-4 h-4 mr-4" />
-              Configurações
+              <BookMarked className="w-4 h-4 mr-4" />
+              Favoritadas
+            </DashboardSidebarNavLink>
+            <DashboardSidebarNavLink
+              href="/app/history"
+              active={isActive('/app/history')}
+            >
+              <HistoryIcon className="w-4 h-4 mr-4" />
+              Histórico
             </DashboardSidebarNavLink>
           </DashboardSidebarNavMain>
         </DashboardSidebarNav>

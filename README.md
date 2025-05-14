@@ -87,7 +87,7 @@ Foi desenvolvido seguindo as **melhores práticas de Clean Code, SOLID**, e sepa
     pnpm dev
    ```
 
-6. Acesse a documentação da API em `http://localhost:3000/docs` (Swagger).
+6. Acesse a documentação da API em `http://localhost:3333/docs` (Swagger).
    > **Observação:** Caso precise popular o banco com as palavras em inglês, execute o comando abaixo dentro da pasta `server`:
    ```bash
    pnpm populate

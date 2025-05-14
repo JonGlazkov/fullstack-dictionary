@@ -1,10 +1,13 @@
 # 📚 Fullstack Challenge 🏅 - Dictionary
 
-Este projeto é uma aplicação fullstack que simula um dicionário online com funcionalidades de autenticação, histórico de palavras visualizadas, favoritos e busca de definições. Foi desenvolvido seguindo as **melhores práticas de Clean Code, SOLID**, e separação clara entre frontend e backend.
+Este projeto é uma aplicação fullstack que simula um dicionário online com funcionalidades de autenticação, histórico de palavras visualizadas, favoritos e busca de definições. 
+
+Foi desenvolvido seguindo as **melhores práticas de Clean Code, SOLID**, e separação clara entre frontend e backend.
 
 ---
+### `This is a challenge by Coodesh`
 
-## 🧱 Tecnologias Utilizadas
+## 💻 Tecnologias Utilizadas
 
 ### 🔙 Backend
 

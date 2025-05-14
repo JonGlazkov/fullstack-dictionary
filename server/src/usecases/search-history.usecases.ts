@@ -36,11 +36,7 @@ class SearchHistoryUseCases {
     );
 
     if (existsWord) {
-      throw new BadRequest({
-        type: ErrorTypes.BadRequest,
-        title: "Word already exists",
-        detail: `The word ${data.word} already exists in the search history.`,
-      });
+      return null;
     }
 
     return await this.searchHistoryRepository.create(userId, data);
@@ -54,7 +50,7 @@ class SearchHistoryUseCases {
 
     return {
       history,
-      total: count,
+      totalDocs: count,
       page: query.page,
       limit: query.limit,
       totalPages: Math.ceil(count / query.limit),

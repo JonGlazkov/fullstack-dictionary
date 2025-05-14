@@ -10,9 +10,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
+        <ThemeProvider
+          //@ts-ignore
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
-          <Toaster />
+          <Toaster theme="system" richColors />
         </ThemeProvider>
       </QueryClientProvider>
     </SessionProvider>

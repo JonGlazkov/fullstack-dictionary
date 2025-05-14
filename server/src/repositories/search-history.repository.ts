@@ -37,8 +37,8 @@ class SearchHistoryRepositoryPrisma implements SearchHistoryRepository {
     return await prisma.searchHistory.findMany({
       where: { userId },
       orderBy: { createdAt: "desc" },
-      skip: (page - 1) * limit,
-      take: limit,
+      skip: (page - 1) * Number(limit),
+      take: Number(limit),
     });
   }
 

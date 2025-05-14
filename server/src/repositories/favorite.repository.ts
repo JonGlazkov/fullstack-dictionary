@@ -5,13 +5,13 @@ import {
 
 class FavoriteRepositoryPrisma implements FavoriteRepository {
   async getAllFavorites(userId: string, query: FavoriteQuery) {
-    const { limit = 10, page = 1 } = query;
+    const { limit = 10, page = 1, search } = query;
 
     return await prisma.favorite.findMany({
-      where: { userId },
+      where: { userId, word: { contains: search } },
       orderBy: { createdAt: "desc" },
-      skip: (page - 1) * limit,
-      take: limit,
+      skip: (page - 1) * Number(limit),
+      take: Number(limit),
     });
   }
 

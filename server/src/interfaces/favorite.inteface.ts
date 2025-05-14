@@ -5,6 +5,7 @@ export interface Favorite {
 }
 
 export interface FavoriteQuery {
+  search?: string;
   page: number;
   limit: number;
 }

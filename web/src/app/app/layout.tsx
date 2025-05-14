@@ -1,7 +1,12 @@
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { auth } from "@/lib/auth";
+import { Metadata } from "next";
 import { PropsWithChildren } from "react";
+
+export const metadata: Metadata = {
+  title: "Dicionário",
+};
 
 export default async function Layout({ children }: PropsWithChildren) {
   const session = await auth();

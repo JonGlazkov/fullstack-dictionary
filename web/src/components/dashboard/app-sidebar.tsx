@@ -1,5 +1,4 @@
 "use client";
-import { UserDropdown } from "@/app/app/_components/user-dropdown";
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +15,7 @@ import { BookMarked, BookOpen, HistoryIcon, Settings } from "lucide-react";
 import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 import { Logo } from "../logo";
+import { UserDropdown } from "./user-dropdown";
 
 const items = [
   {

@@ -80,6 +80,7 @@ class FavoriteUseCase {
 
   async getAllFavorites(
     userId: string,
+
     query: FavoriteQuery
   ): Promise<{
     favorites: Favorite[];

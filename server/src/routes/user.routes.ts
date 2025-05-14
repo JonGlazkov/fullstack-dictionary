@@ -11,21 +11,22 @@ export async function userRoutes(fastify: FastifyInstance) {
   const searchHistoryUseCase = new SearchHistoryUseCases();
 
   fastify.addHook("preHandler", authMiddleware);
-  fastify.patch<{ Params: { id: string }; Body: UserUpdate }>(
-    "/:id",
-    async (req, reply) => {
-      const { id } = req.params;
-      const { name } = req.body;
+  fastify.patch<{ Body: UserUpdate }>("/", async (req, reply) => {
+    const authToken = req.headers.authorization;
+    const token = authToken?.split(" ")[1];
 
-      try {
-        const data = await userUseCase.update(id, { name });
+    const user = fastify.jwt.decode<UserDecodedByJwt>(token);
+    const userId = user.id;
+    const { name } = req.body;
 
-        return reply.status(200).send(data);
-      } catch (error) {
-        reply.send(error);
-      }
+    try {
+      const data = await userUseCase.update(userId, { name });
+
+      return reply.status(200).send(data);
+    } catch (error) {
+      reply.send(error);
     }
-  );
+  });
   fastify.get("/me", async (req, reply) => {
     const authToken = req.headers.authorization;
     const token = authToken?.split(" ")[1];
@@ -65,14 +66,20 @@ export async function userRoutes(fastify: FastifyInstance) {
     const user = fastify.jwt.decode<UserDecodedByJwt>(token);
     const userId = user.id;
 
-    const { limit = 10, page = 1 } = req.query as {
+    const {
+      limit = 10,
+      page = 1,
+      search,
+    } = req.query as {
       limit?: number;
       page?: number;
+      search?: string;
     };
 
     const data = await favoritesUseCase.getAllFavorites(userId, {
       limit,
       page,
+      search,
     });
 
     return reply.status(200).send(data);

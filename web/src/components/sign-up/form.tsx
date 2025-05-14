@@ -46,7 +46,7 @@ export function SignUpForm() {
 
     if (!response.ok) {
       const data = await response.json();
-      toast('Sign up failed', {
+      toast("Sign up failed", {
         description: data.message,
       });
 
@@ -61,11 +61,10 @@ export function SignUpForm() {
       });
 
       if (result?.error) {
-        console.log(result);
         return;
       }
 
-      toast('Congratulations', {
+      toast("Congratulations", {
         description: "You have successfully signed up.",
       });
       router.replace("/app");

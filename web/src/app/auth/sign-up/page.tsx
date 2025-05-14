@@ -42,9 +42,9 @@ export default function SignUp() {
   } = useForm<SignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema),
   });
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams.toString());
-  
+
   const router = useRouter();
 
   const { mutateAsync: createAccount } = useMutation({
@@ -54,7 +54,6 @@ export default function SignUp() {
         email: data.email,
         password: data.password,
       });
-      
     },
     onSuccess: (_, data) => {
       params.set("email", data.email);
@@ -62,11 +61,9 @@ export default function SignUp() {
       router.push("/auth/sign-in" + "?" + params.toString());
     },
     onError: (e) => {
-      console.log(e);
       toast.error("Erro ao criar conta");
     },
   });
-
 
   const handleSignUp = async (data: SignUpFormSchema) => {
     await createAccount(data);

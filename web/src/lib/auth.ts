@@ -1,4 +1,4 @@
-import NextAuth, { Session } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 // Extend the User type to include 'token'
@@ -31,7 +31,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             password: credentials?.password,
           }),
         });
-        console.log(credentials);
         const user = await response.json();
 
         if (user?.token && response.ok) {

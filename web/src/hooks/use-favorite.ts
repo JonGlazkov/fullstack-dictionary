@@ -18,7 +18,6 @@ export const useFavorite = ({ data }: UseFavoriteProps) => {
 
     if (!cachedData) return;
 
-    console.log("cachedData", cachedData);
     queryClient.setQueryData<ApiFavoriteResponse<Favorite[]>>(["favorites"], {
       ...cachedData,
       favorites: cachedData.favorites.map((favorite) => {

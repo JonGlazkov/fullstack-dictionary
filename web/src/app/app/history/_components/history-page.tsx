@@ -40,7 +40,7 @@ export default function HistoryTable() {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 sm:w-[95%]">
         <div className="space-y-5">
           {/* <HistoryTableFilter /> */}
 
@@ -48,11 +48,14 @@ export default function HistoryTable() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[64px]"></TableHead>
-                  <TableHead className="w-[140px]">Identificador</TableHead>
-                  <TableHead className="w-[64px]"></TableHead>
-                  <TableHead className="w-[160px]">Palavra</TableHead>
-                  <TableHead>Data de inserção</TableHead>
+                  <TableHead className="w-[48px]"></TableHead>
+                  <TableHead className="min-w-[120px]">Identificador</TableHead>
+                  <TableHead className="min-w-[120px]">Nome</TableHead>
+                  <TableHead className="min-w-[140px]">
+                    Data de inserção
+                  </TableHead>
+                  <TableHead className="w-[120px]"></TableHead>
+                  <TableHead className="w-[100px]"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

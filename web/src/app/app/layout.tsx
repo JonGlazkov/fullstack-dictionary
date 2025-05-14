@@ -1,14 +1,19 @@
+import { AppSidebar } from "@/components/dashboard/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { auth } from "@/lib/auth";
 import { PropsWithChildren } from "react";
-import { MainSidebar } from "./_components/main-sidebar";
 
 export default async function Layout({ children }: PropsWithChildren) {
   const session = await auth();
 
   return (
-    <div className="grid grid-cols-[16rem_1fr] gap-4">
-      <MainSidebar user={session?.user} />
-      <main>{children}</main>
-    </div>
+    <SidebarProvider>
+      <AppSidebar user={session?.user} />
+
+      <main className="flex-1 flex flex-col gap-4 p-4">
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }

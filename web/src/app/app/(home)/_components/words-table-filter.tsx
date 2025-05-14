@@ -74,7 +74,7 @@ export default function WordsTableFilter() {
   return (
     <form
       onSubmit={handleSubmit(handleFilter)}
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 w-full"
     >
       <span className="text-sm font-semibold">Filtros:</span>
       <Input

@@ -32,7 +32,6 @@ export function SignInForm() {
       toast("Sign in failed", {
         description: result.error,
       });
-      console.log(result);
       return;
     }
 

@@ -57,20 +57,22 @@ export default function WordsTable() {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full px-2 md:px-0 sm:-[95%]">
         <div className="space-y-5">
           <WordsTableFilter />
 
-          <div className="rounded-md border">
-            <Table>
+          <div className="rounded-md border overflow-x-auto">
+            <Table className="min-w-[600px]">
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[64px]"></TableHead>
-                  <TableHead className="w-[140px]">Identificador</TableHead>
-                  <TableHead>Nome</TableHead>
-                  <TableHead>Data de inserção</TableHead>
-                  <TableHead className="w-[164px]"></TableHead>
-                  <TableHead className="w-[132px]"></TableHead>
+                  <TableHead className="w-[48px]"></TableHead>
+                  <TableHead className="min-w-[120px]">Identificador</TableHead>
+                  <TableHead className="min-w-[120px]">Nome</TableHead>
+                  <TableHead className="min-w-[140px]">
+                    Data de inserção
+                  </TableHead>
+                  <TableHead className="w-[120px]"></TableHead>
+                  <TableHead className="w-[100px]"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

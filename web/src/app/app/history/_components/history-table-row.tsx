@@ -33,7 +33,6 @@ export default function WordsTableRow({ data }: WordTableRowProps) {
         </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">{data.id}</TableCell>
-      <TableCell className="font-mono text-xs font-medium"></TableCell>
 
       <TableCell className="font-medium">{data.word}</TableCell>
       <TableCell className="text-muted-foreground">

@@ -31,7 +31,6 @@ export default function WordDetails({ word, open }: WordDetailsProps) {
     enabled: !!word && open,
   });
 
-  console.log("wordData", wordData);
   const playAudio = (audioUrl: string) => {
     if (audioElement) {
       audioElement.pause();

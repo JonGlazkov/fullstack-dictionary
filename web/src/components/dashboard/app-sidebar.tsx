@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { BookMarked, BookOpen, HistoryIcon, Settings } from "lucide-react";
 import { Session } from "next-auth";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "../logo";
 import { UserDropdown } from "./user-dropdown";
@@ -84,10 +85,7 @@ export function AppSidebar({ user }: AppSidebar) {
               {settings.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
+                    <Link href={item.url}>{item.title}</Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

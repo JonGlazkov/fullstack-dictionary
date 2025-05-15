@@ -22,7 +22,8 @@ class App {
 
   async init() {
     const port = parseInt(process.env.PORT || "3333", 10);
-    this.app.listen({ port }).then(() => {
+    const host = process.env.HOST || "";
+    this.app.listen({ port, host }).then(() => {
       console.log(`🚀 HTTP server running on port ${port}`);
       console.log(`📚 Swagger docs available at http://localhost:${port}/docs`);
       console.log(this.app.printRoutes());

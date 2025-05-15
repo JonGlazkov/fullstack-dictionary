@@ -39,9 +39,10 @@ export default function SignIn() {
         password: data.password,
         redirect: false,
       }).then((response) => {
-        // if (response?.error) {
-        //   throw new Error(response.error);
-        // }
+        if (response?.error) {
+          throw new Error(response.error);
+        }
+        console.log(response);
         if (response?.ok) {
           toast("Login efetuado com sucesso");
           router.replace("/app");

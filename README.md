@@ -44,9 +44,8 @@ Foi desenvolvido seguindo as **melhores práticas de Clean Code, SOLID**, e sepa
 
 O projeto encontra-se feito deploy na URL: https://dictionary.jonventura.dev
 
-> **Observação:** Estava encontrando alguns erros com o NextAuth não conseguindo logar com o build. Mas no ambiente de desenvolvimento funciona normalmente.
 
-## 🚀 Como Executar o Projeto
+## 🚀 Como Executar o Projeto em Desenvolvimento
 
 ### Pré-requisitos
 

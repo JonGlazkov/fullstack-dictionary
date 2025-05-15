@@ -29,7 +29,11 @@ class App {
       console.log(this.app.printRoutes());
     });
     this.app.register(cors, {
-      origin: ["http://localhost:3000"],
+      origin: [
+        "https://dictionary.jonventura.dev",
+        "https://fullstack-dictionary-six.vercel.app",
+        "http://localhost:3000",
+      ],
       methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
       allowedHeaders: ["Content-Type", "Authorization"],
     });

@@ -1,9 +1,5 @@
-import {
-  Word,
-  WordQuery,
-  WordRepository,
-} from "@src/interfaces/word.interface";
-import GeneralError, { ErrorTypes } from "@src/utils/error/GeneralError";
+import { Word, WordQuery, WordRepository } from "../interfaces/word.interface";
+import GeneralError, { ErrorTypes } from "../utils/error/GeneralError";
 
 export class WordRepositoryPrisma implements WordRepository {
   async getAll(query: WordQuery): Promise<Word[]> {

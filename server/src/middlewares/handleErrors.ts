@@ -5,7 +5,7 @@ import {
   FastifyRequest,
 } from "fastify";
 
-import GeneralError from "@utils/error/GeneralError";
+import GeneralError from "../utils/error/GeneralError";
 
 enum ErrorTypes {
   App = "App",

@@ -1,7 +1,7 @@
 import {
   FavoriteQuery,
   FavoriteRepository,
-} from "@src/interfaces/favorite.inteface";
+} from "../interfaces/favorite.inteface";
 
 class FavoriteRepositoryPrisma implements FavoriteRepository {
   async getAllFavorites(userId: string, query: FavoriteQuery) {

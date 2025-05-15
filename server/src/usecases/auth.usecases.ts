@@ -1,12 +1,12 @@
+import { FastifyInstance } from "fastify";
 import {
   UserCreate,
   UserLogin,
   UserRepository,
   UserResponse,
-} from "@src/interfaces/user.interface";
-import { UserRepositoryPrisma } from "@src/repositories/user.repository";
-import { BadRequest, ErrorTypes, NotFound } from "@src/utils";
-import { FastifyInstance } from "fastify";
+} from "../interfaces/user.interface";
+import { UserRepositoryPrisma } from "../repositories/user.repository";
+import { BadRequest, ErrorTypes, NotFound } from "../utils";
 
 class AuthUseCase {
   userRepository: UserRepository;

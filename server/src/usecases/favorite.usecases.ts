@@ -2,9 +2,9 @@ import {
   Favorite,
   FavoriteQuery,
   FavoriteRepository,
-} from "@src/interfaces/favorite.inteface";
-import { FavoriteRepositoryPrisma } from "@src/repositories/favorite.repository";
-import { BadRequest, ErrorTypes } from "@src/utils";
+} from "../interfaces/favorite.inteface";
+import { FavoriteRepositoryPrisma } from "../repositories/favorite.repository";
+import { BadRequest, ErrorTypes } from "../utils";
 
 class FavoriteUseCase {
   favoriteRepository: FavoriteRepository;

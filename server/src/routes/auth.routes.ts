@@ -1,7 +1,7 @@
-import { UserCreate, UserLogin } from "@src/interfaces/user.interface";
-import { authMiddleware } from "@src/middlewares/authMiddleware";
-import { AuthUseCase } from "@src/usecases/auth.usecases";
 import { FastifyInstance } from "fastify";
+import { UserCreate, UserLogin } from "../interfaces/user.interface";
+import { authMiddleware } from "../middlewares/authMiddleware";
+import { AuthUseCase } from "../usecases/auth.usecases";
 
 export default async function authRoutes(fastify: FastifyInstance) {
   const authUseCase = new AuthUseCase(fastify);

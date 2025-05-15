@@ -1,10 +1,6 @@
-import {
-  User,
-  UserRepository,
-  UserUpdate,
-} from "@src/interfaces/user.interface";
-import { UserRepositoryPrisma } from "@src/repositories/user.repository";
-import { BadRequest, ErrorTypes } from "@src/utils";
+import { User, UserRepository, UserUpdate } from "../interfaces/user.interface";
+import { UserRepositoryPrisma } from "../repositories/user.repository";
+import { BadRequest, ErrorTypes } from "../utils";
 
 class UserUseCase {
   private userRepository: UserRepository;

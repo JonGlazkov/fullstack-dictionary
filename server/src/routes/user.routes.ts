@@ -1,9 +1,9 @@
-import { UserDecodedByJwt, UserUpdate } from "@src/interfaces/user.interface";
-import { authMiddleware } from "@src/middlewares/authMiddleware";
-import { FavoriteUseCase } from "@src/usecases/favorite.usecases";
-import { SearchHistoryUseCases } from "@src/usecases/search-history.usecases";
-import { UserUseCase } from "@src/usecases/user.usecases";
 import { FastifyInstance } from "fastify";
+import { UserDecodedByJwt, UserUpdate } from "../interfaces/user.interface";
+import { authMiddleware } from "../middlewares/authMiddleware";
+import { FavoriteUseCase } from "../usecases/favorite.usecases";
+import { SearchHistoryUseCases } from "../usecases/search-history.usecases";
+import { UserUseCase } from "../usecases/user.usecases";
 
 export async function userRoutes(fastify: FastifyInstance) {
   const userUseCase = new UserUseCase();

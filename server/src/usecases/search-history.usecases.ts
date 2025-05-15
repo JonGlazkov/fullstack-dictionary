@@ -2,9 +2,9 @@ import {
   SearchHistoryCreate,
   SearchHistoryListByUserId,
   SearchHistoryRepository,
-} from "@src/interfaces/search-history.interface";
-import { SearchHistoryRepositoryPrisma } from "@src/repositories/search-history.repository";
-import { BadRequest, ErrorTypes } from "@src/utils";
+} from "../interfaces/search-history.interface";
+import { SearchHistoryRepositoryPrisma } from "../repositories/search-history.repository";
+import { BadRequest, ErrorTypes } from "../utils";
 
 class SearchHistoryUseCases {
   private searchHistoryRepository: SearchHistoryRepository;

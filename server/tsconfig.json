@@ -6,7 +6,7 @@
     ],
     "module": "node16",
     "outDir": "build",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
@@ -14,22 +14,25 @@
     "skipLibCheck": true,
     "paths": {
       "@src/*": [
-        "./*"
+        "./src/*"
       ],
       "@interfaces/*": [
-        "./interfaces/*"
+        "./src/interfaces/*"
       ],
       "@repositories/*": [
-        "./repositories/*"
+        "./src/repositories/*"
       ],
       "@routes/*": [
-        "./routes/*"
+        "./src/routes/*"
+      ],
+      "@middlewares/*": [
+        "./src/middlewares/*"
       ],
       "@usecases/*": [
-        "./usecases/*"
+        "./src/usecases/*"
       ],
       "@utils/*": [
-        "./utils/*"
+        "./src/utils/*"
       ]
     }
   },

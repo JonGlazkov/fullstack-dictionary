@@ -1,8 +1,8 @@
-import { SearchHistoryCreate } from "@src/interfaces/search-history.interface";
-import { UserDecodedByJwt } from "@src/interfaces/user.interface";
-import { authMiddleware } from "@src/middlewares/authMiddleware";
-import { SearchHistoryUseCases } from "@src/usecases/search-history.usecases";
 import { FastifyInstance } from "fastify";
+import { SearchHistoryCreate } from "../interfaces/search-history.interface";
+import { UserDecodedByJwt } from "../interfaces/user.interface";
+import { authMiddleware } from "../middlewares/authMiddleware";
+import { SearchHistoryUseCases } from "../usecases/search-history.usecases";
 
 export async function searchHistoryRoutes(fastify: FastifyInstance) {
   const searchHistoryUseCase = new SearchHistoryUseCases();

@@ -1,6 +1,6 @@
-import { ErrorTypes } from "@src/utils";
-import Unauthorized from "@src/utils/error/Unauthorized";
 import { FastifyReply, FastifyRequest } from "fastify";
+import { ErrorTypes } from "../utils";
+import Unauthorized from "../utils/error/Unauthorized";
 
 export async function authMiddleware(req: FastifyRequest, reply: FastifyReply) {
   try {

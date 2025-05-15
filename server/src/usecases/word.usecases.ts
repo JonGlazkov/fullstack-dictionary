@@ -1,5 +1,5 @@
-import { WordQuery, WordRepository } from "@src/interfaces/word.interface";
-import { WordRepositoryPrisma } from "@src/repositories/word.repository";
+import { WordQuery, WordRepository } from "../interfaces/word.interface";
+import { WordRepositoryPrisma } from "../repositories/word.repository";
 
 export class WordUseCase {
   wordRepository: WordRepository;

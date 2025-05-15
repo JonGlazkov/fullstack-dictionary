@@ -2,9 +2,9 @@ import cors from "@fastify/cors";
 import jwt from "@fastify/jwt";
 import swagger from "@fastify/swagger";
 import swaggerUi from "@fastify/swagger-ui";
-import handleErrors from "@src/middlewares/handleErrors";
-import routes from "@src/routes";
 import fastify, { FastifyInstance } from "fastify";
+import handleErrors from "../middlewares/handleErrors";
+import routes from "../routes";
 
 class App {
   private readonly app: FastifyInstance;

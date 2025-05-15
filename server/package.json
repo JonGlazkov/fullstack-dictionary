@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/http/index.ts",
+    "start": "node build/http/index.js",
     "populate": "tsx src/utils/database/populateWords.ts",
     "test": "test"
   },
@@ -22,7 +23,8 @@
     "@fastify/swagger-ui": "^5.2.2",
     "@prisma/client": "6.7.0",
     "cors": "^2.8.5",
-    "fastify": "^5.3.2"
+    "fastify": "^5.3.2",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.17",

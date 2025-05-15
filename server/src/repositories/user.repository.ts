@@ -4,8 +4,8 @@ import {
   UserLogin,
   UserRepository,
   UserUpdate,
-} from "@src/interfaces/user.interface";
-import { prisma } from "@src/utils/database/prismaClient";
+} from "../interfaces/user.interface";
+import { prisma } from "../utils/database/prismaClient";
 
 class UserRepositoryPrisma implements UserRepository {
   async create(user: UserCreate): Promise<User> {

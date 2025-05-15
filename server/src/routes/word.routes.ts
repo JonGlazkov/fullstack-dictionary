@@ -1,11 +1,11 @@
-import { UserDecodedByJwt } from "@src/interfaces/user.interface";
-import { authMiddleware } from "@src/middlewares/authMiddleware";
-import { FavoriteUseCase } from "@src/usecases/favorite.usecases";
-import { SearchHistoryUseCases } from "@src/usecases/search-history.usecases";
-import { WordUseCase } from "@src/usecases/word.usecases";
-import { ErrorTypes, NotFound } from "@src/utils";
-import GeneralError from "@src/utils/error/GeneralError";
 import { FastifyInstance } from "fastify";
+import { UserDecodedByJwt } from "../interfaces/user.interface";
+import { authMiddleware } from "../middlewares/authMiddleware";
+import { FavoriteUseCase } from "../usecases/favorite.usecases";
+import { SearchHistoryUseCases } from "../usecases/search-history.usecases";
+import { WordUseCase } from "../usecases/word.usecases";
+import { ErrorTypes, NotFound } from "../utils";
+import GeneralError from "../utils/error/GeneralError";
 
 export async function wordsRoutes(fastify: FastifyInstance) {
   const searchHistoryUseCase = new SearchHistoryUseCases();

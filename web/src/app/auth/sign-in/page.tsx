@@ -40,9 +40,9 @@ export default function SignIn() {
         redirect: false,
       }).then((response) => {
         if (response?.error) {
+          console.log(response);
           throw new Error(response.error);
         }
-        console.log(response);
         if (response?.ok) {
           toast("Login efetuado com sucesso");
           router.replace("/app");

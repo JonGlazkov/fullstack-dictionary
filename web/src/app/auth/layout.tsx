@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
 
 export const metadata: Metadata = {
   title: { default: "Entrar", template: "%s | AI Medcare" },
@@ -24,7 +24,11 @@ export default async function AuthLayout({ children }: PropsWithChildren) {
         </div>
 
         <div className="relative flex flex-col items-center justify-center">
-          {children}
+          <Suspense
+            fallback={<div className="h-full w-full animate-pulse bg-muted" />}
+          >
+            {children}
+          </Suspense>
         </div>
       </div>
     </>

@@ -21,7 +21,7 @@ class UserRepositoryPrisma implements UserRepository {
   }
 
   async me(id: string): Promise<User | null> {
-    const result = await prisma.user.findFirst({
+    const result = await prisma.user.findUnique({
       where: {
         id,
       },
@@ -31,7 +31,7 @@ class UserRepositoryPrisma implements UserRepository {
   }
 
   async login({ email, password }: UserLogin): Promise<User | null> {
-    const result = await prisma.user.findFirst({
+    const result = await prisma.user.findUnique({
       where: {
         email,
         password,
@@ -42,7 +42,7 @@ class UserRepositoryPrisma implements UserRepository {
   }
 
   async verifyEmail(email: string): Promise<User | null> {
-    const result = await prisma.user.findFirst({
+    const result = await prisma.user.findUnique({
       where: {
         email,
       },

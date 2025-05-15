@@ -40,7 +40,6 @@ export default function SignIn() {
         redirect: false,
       }).then((response) => {
         if (response?.error) {
-          console.log(response);
           throw new Error(response.error);
         }
         if (response?.ok) {

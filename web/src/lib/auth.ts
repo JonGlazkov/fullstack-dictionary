@@ -14,6 +14,8 @@ declare module "next-auth" {
   }
 }
 
+const host = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333";
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({
@@ -24,7 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
 
       async authorize(credentials) {
-        const response = await fetch(`http://localhost:3333/auth/signin`, {
+        const response = await fetch(`${host}/auth/signin`, {
           method: "POST",
           body: JSON.stringify({
             email: credentials?.email,

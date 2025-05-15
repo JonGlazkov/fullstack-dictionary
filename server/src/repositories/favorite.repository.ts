@@ -2,6 +2,7 @@ import {
   FavoriteQuery,
   FavoriteRepository,
 } from "../interfaces/favorite.inteface";
+import { prisma } from "../utils/database/prismaClient";
 
 class FavoriteRepositoryPrisma implements FavoriteRepository {
   async getAllFavorites(userId: string, query: FavoriteQuery) {

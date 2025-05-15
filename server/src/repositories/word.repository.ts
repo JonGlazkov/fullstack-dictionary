@@ -1,4 +1,5 @@
 import { Word, WordQuery, WordRepository } from "../interfaces/word.interface";
+import { prisma } from "../utils/database/prismaClient";
 import GeneralError, { ErrorTypes } from "../utils/error/GeneralError";
 
 export class WordRepositoryPrisma implements WordRepository {

@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { getUrl } from "./lib/get-url";
 
 export function middleware(request: NextRequest) {
-  const token = request.cookies.get("authjs.session-token");
+  const token =
+    request.cookies.get("authjs.session-token") ||
+    request.cookies.get("__Secure-authjs.session-token");
   const pathname = request.nextUrl.pathname;
   const baseUrl = request.nextUrl.origin;
 

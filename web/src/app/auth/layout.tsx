@@ -13,7 +13,7 @@ export default async function AuthLayout({ children }: PropsWithChildren) {
       <div className="md:grid not-md:flex min-h-screen not-md:min-w-full not-md:justify-center md:grid-cols-2 antialiased">
         <LeftSide />
 
-        <div className="relative flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
           <Suspense
             fallback={<div className="h-full w-full animate-pulse bg-muted" />}
           >

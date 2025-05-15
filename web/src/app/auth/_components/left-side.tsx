@@ -16,7 +16,7 @@ export default function LeftSide() {
               alt="Dictionary"
               width={1000}
               height={1000}
-              className="min-h-full w-full bg-transparent object-cover"
+              className="h-screen w-full bg-transparent object-cover"
             />
           </div>
         </div>

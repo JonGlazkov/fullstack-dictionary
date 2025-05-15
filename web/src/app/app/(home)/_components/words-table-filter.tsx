@@ -85,7 +85,7 @@ export default function WordsTableFilter() {
 
       <Input
         placeholder="Palavra"
-        className="h-8 w-[320px]"
+        className="h-8 min-w-[200px]"
         {...register("word")}
       />
 

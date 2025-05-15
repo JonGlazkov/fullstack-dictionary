@@ -15,7 +15,7 @@ export default async function Layout({ children }: PropsWithChildren) {
     <SidebarProvider>
       <AppSidebar user={session?.user} />
 
-      <main className="flex-1 flex flex-col gap-4 p-4">
+      <main className="w-screen flex-1 flex flex-col gap-4 p-4">
         <SidebarTrigger />
         {children}
       </main>

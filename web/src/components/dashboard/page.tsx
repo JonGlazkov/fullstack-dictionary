@@ -1,8 +1,8 @@
-import { cn } from '@/lib/utils'
-import { ComponentsGenericProps } from '../types'
+import { cn } from "@/lib/utils";
+import { ComponentsGenericProps } from "../types";
 
 export function DashboardPage({ children, className }: ComponentsGenericProps) {
-  return <section className={cn(['h-screen', className])}>{children}</section>
+  return <section className={cn(["h-screen", className])}>{children}</section>;
 }
 
 export function DashboardPageHeader({
@@ -10,10 +10,10 @@ export function DashboardPageHeader({
   className,
 }: ComponentsGenericProps) {
   return (
-    <header className={cn(['px-6 py-5 border-b border-border', className])}>
+    <header className={cn(["px-6 py-5 border-b border-border", className])}>
       {children}
     </header>
-  )
+  );
 }
 
 export function DashboardPageHeaderTitle({
@@ -21,22 +21,22 @@ export function DashboardPageHeaderTitle({
   className,
 }: ComponentsGenericProps) {
   return (
-    <span className={cn(['text-muted-foreground uppercase', className])}>
+    <span className={cn(["text-muted-foreground uppercase", className])}>
       {children}
     </span>
-  )
+  );
 }
 
 export function DashboardPageHeaderNav({
   children,
   className,
 }: ComponentsGenericProps) {
-  return <nav className={cn(['', className])}>{children}</nav>
+  return <nav className={cn(["", className])}>{children}</nav>;
 }
 
 export function DashboardPageMain({
   children,
   className,
 }: ComponentsGenericProps) {
-  return <main className={cn(['p-6', className])}>{children}</main>
+  return <main className={cn(["p-6", className])}>{children}</main>;
 }

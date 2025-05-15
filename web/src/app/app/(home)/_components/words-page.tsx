@@ -62,7 +62,7 @@ export default function WordsTable() {
           <WordsTableFilter />
 
           <div className="rounded-md border overflow-x-auto">
-            <Table className="min-w-[600px]">
+            <Table className="min-w-[300px]">
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[48px]"></TableHead>
